@@ -54,6 +54,9 @@ public class User extends BaseEntity {
     @Column(name = "permission")
     private Set<Permissions> permissions = new HashSet<>();
 
+    @Column(nullable = false)
+    private boolean mustChangePassword = true;
+
     public User(){}
 
     public String getEmail() {
@@ -102,5 +105,13 @@ public class User extends BaseEntity {
 
     public void setPermissions(Set<Permissions> permissions) {
         this.permissions = permissions;
+    }
+
+    public boolean isMustChangePassword() {
+        return mustChangePassword;
+    }
+
+    public void setMustChangePassword(boolean mustChangePassword) {
+        this.mustChangePassword = mustChangePassword;
     }
 }
