@@ -10,6 +10,7 @@ public class BranchService {
     private final BranchRepository branchRepository;
     private final CompanyRepository companyRepository;
 
+
     public BranchService(BranchRepository branchRepository, CompanyRepository companyRepository) {
         this.branchRepository = branchRepository;
         this.companyRepository = companyRepository;
