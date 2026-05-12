@@ -1,14 +1,17 @@
 package com.insurance.management.insurance;
 
 import com.insurance.management.common.entity.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
+@Table(name = "insurance_types")
 public class InsuranceType extends BaseEntity {
 
+    @NotBlank
+    @Size(max = 150)
+    @Column(nullable = false, unique = true, length = 150)
     private String insuranceName;
 
     @Enumerated(EnumType.STRING)

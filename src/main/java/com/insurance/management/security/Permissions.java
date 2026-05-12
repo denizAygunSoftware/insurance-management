@@ -2,6 +2,10 @@ package com.insurance.management.security;
 
 public enum Permissions {
 
+    CREATE_COMPANY,
+    EDIT_COMPANY,
+    DELETE_COMPANY,
+
     CREATE_USER,
     EDIT_USER,
     DELETE_USER,

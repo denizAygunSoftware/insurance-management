@@ -1,8 +1,10 @@
 package com.insurance.management.branch;
 
+import com.insurance.management.common.exception.BusinessException;
 import com.insurance.management.company.Company;
 import com.insurance.management.company.CompanyRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BranchService {
@@ -15,13 +17,14 @@ public class BranchService {
         this.companyRepository = companyRepository;
     }
 
-    public void createBranch(CreateBranchRequestDto branchRequestDto){
+    @Transactional
+    public void createBranch(CreateBranchRequestDto branchRequestDto) {
 
         Company company = companyRepository.findById(branchRequestDto.getCompanyId())
-                .orElseThrow(() -> new RuntimeException("Company not found"));
+                .orElseThrow(() -> new BusinessException("Company not found"));
 
-        if(branchRepository.existsByBranchNameAndCompany_Id(branchRequestDto.getBranchName(), branchRequestDto.getCompanyId())){
-            throw new RuntimeException("Branch already exists for this company");
+        if (branchRepository.existsByBranchNameAndCompany_Id(branchRequestDto.getBranchName(), branchRequestDto.getCompanyId())) {
+            throw new BusinessException("Branch already exists for this company");
         }
         Branch branch = new Branch();
         branch.setBranchName(branchRequestDto.getBranchName());

@@ -1,16 +1,27 @@
 package com.insurance.management.user;
 
 import com.insurance.management.security.Permissions;
+import jakarta.validation.constraints.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class CreateUserRequestDto {
 
+    @NotBlank
+    @Email
     private String email;
+
+    @NotBlank
+    @Pattern(regexp = "^[0-9]{11}$", message = "Identity number must be exactly 11 digits")
     private String identityNumber;
+
+    @NotNull
     private Long companyId;
+
+    @NotEmpty
     private Set<Long> branchIds = new HashSet<>();
+
     private Set<Permissions> permissions = new HashSet<>();
 
     public String getEmail() {
